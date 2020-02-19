@@ -1,7 +1,6 @@
 package Connect4;
 
 import java.awt.Color;
-
 import acm.program.GraphicsProgram;
 
 /**
@@ -13,6 +12,11 @@ public class Connect4 extends GraphicsProgram {
 
 	public void run() {
 
+		
+		setSize(900,800);
+		setBackground(Color.LIGHT_GRAY);
+		setTitle("Connect 4 Game by Elian Eiselt and Malte Möheken");
+		
 		Board board = new Board(6, 7);
 		board.setEmpty();
 
@@ -23,6 +27,10 @@ public class Connect4 extends GraphicsProgram {
 
 		ConsoleView cView = new ConsoleView();
 		board.registerView(cView);
+		
+		GraphicsView gView = new GraphicsView(board, player1, player2);
+		add(gView);
+		board.registerView(gView);
 
 		int a = 0;
 		boolean win = false;

@@ -80,6 +80,22 @@ public class Board {
 	public String getPos(int x, int y) {
 		return storage[x][y];
 	}
+	
+	/**
+	 * Get array row length.
+	 * @return row length
+	 */
+	public int getBoardRowLength() {
+		return storage.length;
+	}
+	
+	/**
+	 * get array column length.
+	 * @return column length
+	 */
+	public int getBoardColLength() {
+		return storage[0].length;
+	}
 
 ///////////////////////////
 // View
@@ -267,5 +283,6 @@ public class Board {
 		
 		return null;
 	}
+
 
 }
