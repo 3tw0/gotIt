@@ -1,0 +1,5 @@
+BUGS:
+
+Board -> setPlayerPos 
+	wenn mann über die spalte hinaus setzt also quasi den 7. stein dann malt er das nicht und gibt keinen error
+	aber es zählt trotzdem als zug des spielers und der andere ist dran.
