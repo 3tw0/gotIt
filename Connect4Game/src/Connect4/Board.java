@@ -77,8 +77,8 @@ public class Board {
 	 * @param y	"column"
 	 * @return string at given location
 	 */
-	public String getPos(int x, int y) {
-		return storage[x][y];
+	public String getPos(int row, int col) {
+		return storage[row][col];
 	}
 	
 	/**
