@@ -142,9 +142,7 @@ public class Board {
 		if (colCheck(player1, player2) == player2) {
 			return player2;
 		}
-
 		
-
 		if (diagUp(player1, player2) == player1) {
 			return player1;
 		}
