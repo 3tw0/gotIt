@@ -58,7 +58,7 @@ public class Connect4 extends GraphicsProgram {
 
 			// abbruchbedingung
 			if (a == 42) {
-				break;
+				return;
 			}
 
 			a++;
