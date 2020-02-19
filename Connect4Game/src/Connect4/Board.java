@@ -7,7 +7,7 @@ public class Board {
 	/** input storage. */
 
 	private String[][] storage;
-	private int[] colCount = {0,0,0,0,0,0,0};
+	private int[] colCount = { 0, 0, 0, 0, 0, 0, 0 };
 
 	private final HashSet<View> views = new HashSet<>();
 
@@ -76,27 +76,100 @@ public class Board {
 
 	// TODO
 
-	public boolean winCheck(Player player) {
-		if (rowCheck() || colCheck() || diagUp() || diagDown()) {
-			return true;
+	public Player winCheck(Player player1, Player player2) {
+		
+		if (rowCheck(player1, player2) == player1) {
+			return player1;
 		}
-		return false;
+		
+		if (colCheck(player1, player2) == player1) {
+			return player1;
+		}
+		
+		if (colCheck(player1, player2) == player2) {
+			return player2;
+		}
+		
+		if (colCheck(player1, player2) == player2) {
+			return player2;
+		}
+		
+		return null;
+		
+		
+	}
+	
+	private Player rowCheck(Player player1, Player player2) {
+		
+		String symbol1 = player1.getSymbol();
+		String symbol2 = player2.getSymbol();
+		
+		int winPlayer1;
+		int winPlayer2;
+		
+		//row check
+		for (int i = 0; i < storage.length; i++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			for (int j = 0; j < storage[i].length; j++) {
+				
+				if (storage[i][j] == symbol1) {
+					winPlayer1 += 1;
+					winPlayer2 = 0;
+				}
+				
+				if (storage[i][j] == symbol2) {
+					winPlayer1 = 0;
+					winPlayer2 += 1;
+				}
+				
+				if (winPlayer1 == 4) {
+					return player1;
+				}
+				
+				if (winPlayer2 == 4) {
+					return player2;
+				}
+			}
+		}
+		return null;
+	}
+	
+	private Player colCheck(Player player1, Player player2) {
+		
+		String symbol1 = player1.getSymbol();
+		String symbol2 = player2.getSymbol();
+		
+		int winPlayer1;
+		int winPlayer2;
+		
+		for (int i = 0; i < 7; i++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			for (int j = 0; j < 6; j++) {
+				
+				if (storage[j][i] == symbol1) {
+					winPlayer1 += 1;
+					winPlayer2 = 0;
+				}
+				
+				if (storage[j][i] == symbol2) {
+					winPlayer1 = 0;
+					winPlayer2 += 1;
+				}
+				
+				if (winPlayer1 == 4) {
+					return player1;
+				}
+				
+				if (winPlayer2 == 4) {
+					return player2;
+				}
+			}
+		}
+		return null;
 	}
 
-	private boolean colCheck() {
-		return false;
-	}
-
-	private boolean rowCheck() {
-		return false;
-	}
-
-	private boolean diagUp() {
-		return false;
-	}
-
-	private boolean diagDown() {
-		return false;
-	}
+	
 
 }
