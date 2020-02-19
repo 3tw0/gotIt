@@ -1,5 +1,10 @@
 package Connect4;
 
+/**
+ * Console View Class.
+ * @author elianeiselt
+ *
+ */
 public class ConsoleView implements View {
 
 	@Override

@@ -4,6 +4,11 @@ import java.awt.Color;
 
 import acm.program.GraphicsProgram;
 
+/**
+ * Connect 4 Game.
+ * @author elianeiselt
+ *
+ */
 public class Connect4 extends GraphicsProgram {
 
 	public void run() {
@@ -22,20 +27,19 @@ public class Connect4 extends GraphicsProgram {
 		int a = 0;
 		boolean win = false;
 
+		// game loop
 		while (!win) {
+
+			// abwechselndes spielen
 			if (a % 2 == 0) {
-
 				board.setPlayerPos(player1, readInt(), player1.getSymbol());
-
 			}
 
 			if (a % 2 == 1) {
-
 				board.setPlayerPos(player2, readInt(), player2.getSymbol());
-
 			}
 
-			
+			// win checks
 			if (board.winCheck(player1, player2) == player1) {
 				println(player1.getName() + " hat gewonnen!!!");
 			}

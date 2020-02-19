@@ -2,11 +2,20 @@ package Connect4;
 
 import java.awt.Color;
 
+/**
+ * Player Class.
+ * Stores name, symbol, color of every player object and provides getter/setter
+ * @author elianeiselt
+ *
+ */
 public class Player {
 	
 	private String name;
 	private String symbol;
 	private Color color;
+
+/////////////////
+// Constructor
 	
 	public Player () {
 		this("PlayerUnknown", Color.PINK);
