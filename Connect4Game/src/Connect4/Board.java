@@ -130,6 +130,10 @@ public class Board {
 		if (rowCheck(player1, player2) == player1) {
 			return player1;
 		}
+		
+		if (rowCheck(player1, player2) == player2) {
+			return player2;
+		}
 
 		if (colCheck(player1, player2) == player1) {
 			return player1;
@@ -139,9 +143,7 @@ public class Board {
 			return player2;
 		}
 
-		if (colCheck(player1, player2) == player2) {
-			return player2;
-		}
+		
 
 		if (diagUp(player1, player2) == player1) {
 			return player1;
@@ -279,7 +281,31 @@ public class Board {
 		int winPlayer1;
 		int winPlayer2;
 		
-		// TODO
+		for (int row = 0; row < 3; row++) {
+			for(int col = 0; col < 4; col++) {
+				winPlayer1 = 0;
+				winPlayer2 = 0;
+				for (int diagonal = 0; diagonal < 6 - diagonal; diagonal++) { // in einer der beiden zeilen ist der fehler
+					if (storage[col + diagonal][row + diagonal] == symbol1) { // 
+						winPlayer1 += 1;
+						winPlayer2 = 0;
+					}
+					
+					if (storage[col + diagonal][row + diagonal] == symbol2) {
+						winPlayer1 = 0;
+						winPlayer2 += 1;
+					}
+					
+					if (winPlayer1 == 4) {
+						return player1;
+					}
+
+					if (winPlayer2 == 4) {
+						return player2;
+					}
+				}
+			}
+		}
 		
 		return null;
 	}
