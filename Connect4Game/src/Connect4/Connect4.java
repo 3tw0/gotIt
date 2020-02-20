@@ -58,12 +58,12 @@ public class Connect4 extends GraphicsProgram {
 				win = true;
 			}
 
+			a++;
+			
 			// abbruchbedingung
 			if (a == 42) {
 				return;
 			}
-
-			a++;
 		}
 		
 		if (!win) {

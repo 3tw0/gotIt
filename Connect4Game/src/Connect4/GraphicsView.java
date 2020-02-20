@@ -41,6 +41,8 @@ public class GraphicsView extends GCompound implements View {
 				oval.setFilled(true);
 				add(oval);
 
+				// werden bei jedem durchlauf geprintet
+				// aus for schleife raus
 				GLabel labelPlayer1 = new GLabel(player1.getName());
 				labelPlayer1.setColor(player1.getColor());
 				labelPlayer1.setLocation(OFFSET + (SQUARE_SIZE / 4), OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);
