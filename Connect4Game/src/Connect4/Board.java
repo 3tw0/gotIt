@@ -63,15 +63,16 @@ public class Board {
 			Scanner scan = new Scanner(System.in);
 			int newInt = scan.nextInt();
 			setPlayerPos(player, newInt, input);
+			return;
 		}
 
 		// recursion bei invalider eingabe -> oben
-		// der fehler ist das er obwohl wir einen neuen wert eingeben auch trozzdem noch versucht den alten hinzuzufügen
 		if (colCount[col - 1] == 6 && col > 1 && col <=7) {
 			System.out.println("Select a valid Column to place!");
 			Scanner scan = new Scanner(System.in);
 			int newInt = scan.nextInt();
 			setPlayerPos(player, newInt, input);
+			return;
 		}
 
 		if (colCount[col - 1] < 6 && col > 1 && col <=7) {
