@@ -15,6 +15,7 @@ Board ->diagUp
 	
 	
 TODO:
+
 - printen des siegers in den console view nicht in connect 4 implementieren
 - vllt auch anzeigen des gewinners im graphics view
 - diagonal up check
