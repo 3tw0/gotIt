@@ -1,10 +1,12 @@
 package Connect4;
 
 import java.util.HashSet;
+import java.util.Scanner;
 
 /**
- * Board Class.
- * Provides the board and all methods necessary for playing connect 4
+ * Board Class. Provides the board and all methods necessary for playing connect
+ * 4
+ * 
  * @author elianeiselt
  *
  */
@@ -19,7 +21,7 @@ public class Board {
 
 ///////////////////////////
 // Constructor
-	
+
 	public Board() {
 		this(6, 7);
 	}
@@ -48,14 +50,27 @@ public class Board {
 
 	/**
 	 * adds a player stone to @storage and updates view.
+	 * 
 	 * @param player the player whos placing
-	 * @param col the column where he wants to playce
-	 * @param input the string to input
+	 * @param col    the column where he wants to playce
+	 * @param input  the string to input
 	 */
 	public void setPlayerPos(Player player, int col, String input) {
 
+		// recursion wenn col außerhalb des bereichs ist -> links / rechts
 		if (col < 1 || col > 7) {
-			return;
+			System.out.println("Select a valid Column to place!");
+			Scanner scan = new Scanner(System.in);
+			int newInt = scan.nextInt();
+			setPlayerPos(player, newInt, input);
+		}
+
+		// recursion bei invalider eingabe -> oben
+		if (colCount[col - 1] == 6) {
+			System.out.println("Select a valid Column to place!");
+			Scanner scan = new Scanner(System.in);
+			int newInt = scan.nextInt();
+			setPlayerPos(player, newInt, input);
 		}
 
 		if (colCount[col - 1] < 6) {
@@ -73,24 +88,27 @@ public class Board {
 
 	/**
 	 * Getts the value in @storage at the given position.
+	 * 
 	 * @param x "row"
-	 * @param y	"column"
+	 * @param y "column"
 	 * @return string at given location
 	 */
 	public String getPos(int row, int col) {
 		return storage[row][col];
 	}
-	
+
 	/**
 	 * Get array row length.
+	 * 
 	 * @return row length
 	 */
 	public int getBoardRowLength() {
 		return storage.length;
 	}
-	
+
 	/**
 	 * get array column length.
+	 * 
 	 * @return column length
 	 */
 	public int getBoardColLength() {
@@ -101,7 +119,7 @@ public class Board {
 // View
 
 	// ka komische cds kram kann ich erklären aber kb zu schreiben
-	
+
 	public void registerView(View view) {
 		views.add(view);
 		view.update(this);
@@ -120,17 +138,18 @@ public class Board {
 
 	/**
 	 * Win check
+	 * 
 	 * @param player1 player1
 	 * @param player2 player2
 	 * @return the player who won, else null
-	 */		
+	 */
 	public Player winCheck(Player player1, Player player2) {
 
-		// absolut geistiger code  aber funktioniert
+		// absolut geistiger code aber funktioniert
 		if (rowCheck(player1, player2) == player1) {
 			return player1;
 		}
-		
+
 		if (rowCheck(player1, player2) == player2) {
 			return player2;
 		}
@@ -142,7 +161,7 @@ public class Board {
 		if (colCheck(player1, player2) == player2) {
 			return player2;
 		}
-		
+
 		if (diagUp(player1, player2) == player1) {
 			return player1;
 		}
@@ -165,7 +184,8 @@ public class Board {
 
 	/**
 	 * row check.
-	 * @param player1 player1 
+	 * 
+	 * @param player1 player1
 	 * @param player2 playe2
 	 * @return player with a winning row, else null
 	 */
@@ -193,6 +213,11 @@ public class Board {
 					winPlayer2 += 1;
 				}
 
+				if (storage[i][j] == " - ") {
+					winPlayer1 = 0;
+					winPlayer2 = 0;
+				}
+
 				if (winPlayer1 == 4) {
 					return player1;
 				}
@@ -207,6 +232,7 @@ public class Board {
 
 	/**
 	 * col Check.
+	 * 
 	 * @param player1 player1
 	 * @param player2 player 2
 	 * @return player with a winning column, else null
@@ -234,6 +260,11 @@ public class Board {
 					winPlayer2 += 1;
 				}
 
+				if (storage[j][i] == " - ") {
+					winPlayer1 = 0;
+					winPlayer2 = 0;
+				}
+
 				if (winPlayer1 == 4) {
 					return player1;
 				}
@@ -248,6 +279,7 @@ public class Board {
 
 	/**
 	 * diagonal up checker.
+	 * 
 	 * @param player1 player1
 	 * @param player2 player2
 	 * @return player with a winning diagonal, else null
@@ -259,54 +291,128 @@ public class Board {
 
 		int winPlayer1;
 		int winPlayer2;
-		
-		// TODO
-		
+
+		//TODO
 		return null;
 	}
 
 	/**
 	 * diagonal down checker.
+	 * 
 	 * @param player1 player1
 	 * @param player2 player2
 	 * @return player with a winning diagonal, else null
 	 */
 	private Player diagDown(Player player1, Player player2) {
 
+		// ja ich weis das das sehr ekliger code ist aber es funktioniert :D
+
 		String symbol1 = player1.getSymbol();
 		String symbol2 = player2.getSymbol();
 
 		int winPlayer1;
 		int winPlayer2;
-		
-		for (int row = 0; row < 3; row++) {
-			for(int col = 0; col < 4; col++) {
-				winPlayer1 = 0;
-				winPlayer2 = 0;
-				for (int diagonal = 0; diagonal < 6 - diagonal; diagonal++) { // in einer der beiden zeilen ist der fehler
-					if (storage[col + diagonal][row + diagonal] == symbol1) { // 
-						winPlayer1 += 1;
-						winPlayer2 = 0;
-					}
-					
-					if (storage[col + diagonal][row + diagonal] == symbol2) {
-						winPlayer1 = 0;
-						winPlayer2 += 1;
-					}
-					
-					if (winPlayer1 == 4) {
-						return player1;
-					}
+		int uselessCount;
 
-					if (winPlayer2 == 4) {
-						return player2;
-					}
+		// case row[0] col[2] / row[0] col[3]
+		for (int col = 2; col < 4; col++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			for (int diagDown = 0; diagDown < 7 - col; diagDown++) {
+				if (storage[0 + diagDown][col + diagDown] == symbol1) {
+					winPlayer1 += 1;
+					winPlayer2 = 0;
+				}
+
+				if (storage[0 + diagDown][col + diagDown] == symbol2) {
+					winPlayer1 = 0;
+					winPlayer2 += 1;
+				}
+
+				if (storage[0 + diagDown][col + diagDown] == " - ") {
+					winPlayer1 = 0;
+					winPlayer2 = 0;
+				}
+
+				if (winPlayer1 == 4) {
+					return player1;
+				}
+
+				if (winPlayer2 == 4) {
+					return player2;
 				}
 			}
 		}
-		
+
+		// special case row[0] col[0]
+		for (int row = 0; row < 1; row++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			for (int diagDown = 0; diagDown < 6 - row; diagDown++) {
+				if (storage[row + diagDown][0 + diagDown] == symbol1) {
+					winPlayer1 += 1;
+					winPlayer2 = 0;
+				}
+
+				if (storage[row + diagDown][0 + diagDown] == symbol2) {
+					winPlayer1 = 0;
+					winPlayer2 += 1;
+				}
+
+				if (storage[row + diagDown][0 + diagDown] == " - ") {
+					winPlayer1 = 0;
+					winPlayer2 = 0;
+				}
+
+				if (winPlayer1 == 4) {
+					return player1;
+				}
+
+				if (winPlayer2 == 4) {
+					return player2;
+				}
+			}
+		}
+
+		// case row[0] col[1] / row[1] col[0] / row[2] col[0]
+		for (int row = 0; row < 3; row++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			for (int diagDown = 0; diagDown < 6 - row; diagDown++) {
+
+				if (row == 0) {
+					uselessCount = 1;
+				} else {
+					uselessCount = 0;
+				}
+
+				if (storage[row + diagDown][uselessCount + diagDown] == symbol1) {
+					winPlayer1 += 1;
+					winPlayer2 = 0;
+				}
+
+				if (storage[row + diagDown][uselessCount + diagDown] == symbol2) {
+					winPlayer1 = 0;
+					winPlayer2 += 1;
+				}
+
+				if (storage[row + diagDown][uselessCount + diagDown] == " - ") {
+					winPlayer1 = 0;
+					winPlayer2 = 0;
+				}
+
+				if (winPlayer1 == 4) {
+					return player1;
+				}
+
+				if (winPlayer2 == 4) {
+					return player2;
+				}
+
+			}
+		}
+
 		return null;
 	}
-
 
 }

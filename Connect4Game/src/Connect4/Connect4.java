@@ -50,10 +50,12 @@ public class Connect4 extends GraphicsProgram {
 			// win checks
 			if (board.winCheck(player1, player2) == player1) {
 				println(player1.getName() + " hat gewonnen!!!");
+				win = true;
 			}
 
 			if (board.winCheck(player1, player2) == player2) {
 				println(player2.getName() + " hat gewonnen!!!");
+				win = true;
 			}
 
 			// abbruchbedingung
@@ -62,6 +64,19 @@ public class Connect4 extends GraphicsProgram {
 			}
 
 			a++;
+		}
+		
+		if (!win) {
+			System.out.println("Unentschieden!");
+		}
+		
+		System.out.println();
+		System.out.println("Thanks for playing <3");
+		
+		//starting a new game
+		String again = readLine("If you want to play again type 'Yes': ");
+		if (again.toLowerCase().equals("yes")) {
+			new Connect4().start();
 		}
 
 	}
