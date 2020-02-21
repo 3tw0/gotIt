@@ -31,6 +31,9 @@ public class Connect4 extends GraphicsProgram {
 		GraphicsView gView = new GraphicsView(board, player1, player2);
 		add(gView);
 		board.registerView(gView);
+		
+		//LighthouseView lView = new LighthouseView(board, player1, player2);
+		//board.registerView(lView);
 
 		int a = 0;
 		boolean win = false;

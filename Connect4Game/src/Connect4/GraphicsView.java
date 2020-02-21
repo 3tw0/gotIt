@@ -3,6 +3,7 @@ package Connect4;
 import java.awt.Color;
 
 import acm.graphics.GCompound;
+import acm.graphics.GFillable;
 import acm.graphics.GLabel;
 import acm.graphics.GOval;
 import acm.graphics.GRect;
@@ -41,21 +42,20 @@ public class GraphicsView extends GCompound implements View {
 				oval.setFilled(true);
 				add(oval);
 
-				// werden bei jedem durchlauf geprintet
-				// aus for schleife raus
-				GLabel labelPlayer1 = new GLabel(player1.getName());
-				labelPlayer1.setColor(player1.getColor());
-				labelPlayer1.setLocation(OFFSET + (SQUARE_SIZE / 4), OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);
-				add(labelPlayer1);
-
-				GLabel labelPlayer2 = new GLabel(player2.getName());
-				labelPlayer2.setColor(player2.getColor());
-				labelPlayer2.setLocation(OFFSET + (SQUARE_SIZE / 4) + (SQUARE_SIZE * 6),
-						OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);
-				add(labelPlayer2);
 			}
 
 		}
+
+		GLabel labelPlayer1 = new GLabel(player1.getName());
+		labelPlayer1.setColor(player1.getColor());
+		labelPlayer1.setLocation(OFFSET + (SQUARE_SIZE / 4), OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);
+		add(labelPlayer1);
+
+		GLabel labelPlayer2 = new GLabel(player2.getName());
+		labelPlayer2.setColor(player2.getColor());
+		labelPlayer2.setLocation(OFFSET + (SQUARE_SIZE / 4) + (SQUARE_SIZE * 6),
+				OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);
+		add(labelPlayer2);
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class GraphicsView extends GCompound implements View {
 					oval.setFilled(true);
 					add(oval);
 				}
-				
+
 				if (board.getPos(j, i).equals(player2.getSymbol())) {
 					GOval oval = new GOval(x + 8, y + 8, SQUARE_SIZE - 16, SQUARE_SIZE - 16);
 					oval.setFillColor(player2.getColor());
@@ -83,6 +83,21 @@ public class GraphicsView extends GCompound implements View {
 					add(oval);
 				}
 			}
+		}
+
+		// win checks
+		if (board.winCheck(player1, player2) == player1) {
+			GLabel win = new GLabel(player1.getName() + " hat gewonnen !!!");
+			win.setLocation(OFFSET + (SQUARE_SIZE * 3), OFFSET + (SQUARE_SIZE * 6) + (2 * DESCRIPTION_OFFSET));
+			win.setColor(player1.getColor());
+			add(win);
+		}
+
+		if (board.winCheck(player1, player2) == player2) {
+			GLabel win = new GLabel(player2.getName() + " hat gewonnen !!!");
+			win.setLocation(OFFSET + (SQUARE_SIZE * 3), OFFSET + (SQUARE_SIZE * 6) + (2 * DESCRIPTION_OFFSET));
+			win.setColor(player2.getColor());
+			add(win);
 		}
 	}
 }

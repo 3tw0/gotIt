@@ -67,7 +67,7 @@ public class Board {
 		}
 
 		// recursion bei invalider eingabe -> oben
-		if (colCount[col - 1] == 6 && col > 1 && col <=7) {
+		if (colCount[col - 1] == 6 && col >= 1 && col <=7) {
 			System.out.println("Select a valid Column to place!");
 			Scanner scan = new Scanner(System.in);
 			int newInt = scan.nextInt();
@@ -75,7 +75,7 @@ public class Board {
 			return;
 		}
 
-		if (colCount[col - 1] < 6 && col > 1 && col <=7) {
+		if (colCount[col - 1] < 6 && col >= 1 && col <=7) {
 			for (int row = 5; row >= 0; row--) {
 				if (storage[row][col - 1].equals(" - ")) {
 					storage[row][col - 1] = player.getSymbol();
