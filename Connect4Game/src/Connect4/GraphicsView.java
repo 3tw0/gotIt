@@ -13,7 +13,7 @@ public class GraphicsView extends GCompound implements View {
 	Player player1;
 	Player player2;
 
-	static final int OFFSET = 75;
+	static final int OFFSET = 70;
 	/** size. */
 	static final int SQUARE_SIZE = 100;
 
@@ -41,8 +41,12 @@ public class GraphicsView extends GCompound implements View {
 				oval.setFillColor(Color.WHITE);
 				oval.setFilled(true);
 				add(oval);
+				
 
 			}
+			GLabel numbers = new GLabel("" + (1 + i));
+			numbers.setLocation(x + (SQUARE_SIZE / 2), OFFSET / 2);
+			add(numbers);
 
 		}
 
