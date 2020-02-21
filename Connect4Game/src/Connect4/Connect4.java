@@ -78,6 +78,10 @@ public class Connect4 extends GraphicsProgram {
 		if (again.toLowerCase().equals("yes")) {
 			new Connect4().start();
 		}
+		// lighthouse display
+		if (again.toLowerCase().equals("no")) {
+			//display.close();
+		}
 
 	}
 
