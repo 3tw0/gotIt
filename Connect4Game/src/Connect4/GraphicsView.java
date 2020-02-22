@@ -13,10 +13,11 @@ public class GraphicsView extends GCompound implements View {
 	Player player1;
 	Player player2;
 
+	/** OFFSET */
 	static final int OFFSET = 70;
 	/** size. */
 	static final int SQUARE_SIZE = 100;
-
+	/** description offset */
 	private static final int DESCRIPTION_OFFSET = 20;
 
 	public GraphicsView(Board board, Player player1, Player player2) {
@@ -32,6 +33,7 @@ public class GraphicsView extends GCompound implements View {
 				x = OFFSET + (i * SQUARE_SIZE);
 				y = OFFSET + (j * SQUARE_SIZE);
 
+				// rects und ovals
 				GRect rect = new GRect(x, y, SQUARE_SIZE, SQUARE_SIZE);
 				rect.setFillColor(Color.BLUE);
 				rect.setFilled(true);
@@ -44,12 +46,13 @@ public class GraphicsView extends GCompound implements View {
 				
 
 			}
+			// zahlen die oben angezeigt werden
 			GLabel numbers = new GLabel("" + (1 + i));
 			numbers.setLocation(x + (SQUARE_SIZE / 2), OFFSET / 2);
 			add(numbers);
 
 		}
-
+		// namen die unten angezeigt werden
 		GLabel labelPlayer1 = new GLabel(player1.getName());
 		labelPlayer1.setColor(player1.getColor());
 		labelPlayer1.setLocation(OFFSET + (SQUARE_SIZE / 4), OFFSET + (SQUARE_SIZE * 6) + DESCRIPTION_OFFSET);

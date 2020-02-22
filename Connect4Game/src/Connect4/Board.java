@@ -74,7 +74,7 @@ public class Board {
 			setPlayerPos(player, newInt, input);
 			return;
 		}
-
+		// placing
 		if (colCount[col - 1] < 6 && col >= 1 && col <=7) {
 			for (int row = 5; row >= 0; row--) {
 				if (storage[row][col - 1].equals(" - ")) {

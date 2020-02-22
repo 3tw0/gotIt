@@ -1,17 +1,6 @@
 BUGS:
 
-Board -> setPlayerPos 
-	wenn mann über die spalte hinaus setzt also quasi den 7. stein dann malt er das nicht und gibt keinen error
-	aber es zählt trotzdem als zug des spielers und der andere ist dran.
-	
-Board -> diagDown
-	links oben rechts unten
-	2x 6x row[0] col[0](done) und row[0] col[1](done)
-	2x 5x row[0] col[2](done) und row[1] col[0](done)
-	2x 4x row[0] col[3](done) und row[2] col[0](done)
-	
-Board ->diagUp
-	//TODO
+Board -> diagUp
 	
 	
 TODO:
