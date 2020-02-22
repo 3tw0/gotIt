@@ -294,7 +294,40 @@ public class Board {
 		int winPlayer1;
 		int winPlayer2;
 
-		//TODO
+		// not working
+		for(int row = 0; row < 1; row++) {
+			winPlayer1 = 0;
+			winPlayer2 = 0;
+			int a = 0;
+			for(int col = 3; col < 6; col++) {
+				for(int diag = 0; diag < ((col * (-1)) - 1); diag--) {
+					if (storage[row + a][col + diag] == symbol1) {
+						winPlayer1 += 1;
+						winPlayer2 = 0;
+					}
+
+					if (storage[row + a][col + diag] == symbol2) {
+						winPlayer1 = 0;
+						winPlayer2 += 1;
+					}
+
+					if (storage[row + a][col + diag] == " - ") {
+						winPlayer1 = 0;
+						winPlayer2 = 0;
+					}
+
+					if (winPlayer1 == 4) {
+						return player1;
+					}
+
+					if (winPlayer2 == 4) {
+						return player2;
+					}
+					
+					a++;
+				}
+			}
+		}
 		return null;
 	}
 

@@ -43,7 +43,6 @@ public class GraphicsView extends GCompound implements View {
 				oval.setFillColor(Color.WHITE);
 				oval.setFilled(true);
 				add(oval);
-				
 
 			}
 			// zahlen die oben angezeigt werden
@@ -94,6 +93,7 @@ public class GraphicsView extends GCompound implements View {
 
 		// win checks
 		if (board.winCheck(player1, player2) == player1) {
+
 			GLabel win = new GLabel(player1.getName() + " hat gewonnen !!!");
 			win.setLocation(OFFSET + (SQUARE_SIZE * 3), OFFSET + (SQUARE_SIZE * 6) + (2 * DESCRIPTION_OFFSET));
 			win.setColor(player1.getColor());
