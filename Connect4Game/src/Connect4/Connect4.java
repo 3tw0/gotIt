@@ -16,17 +16,21 @@ public class Connect4 extends GraphicsProgram {
 		setSize(900,800);
 		setBackground(Color.LIGHT_GRAY);
 		setTitle("Connect 4 Game by Elian Eiselt and Malte Möheken");
+		
 		// new game board
 		Board board = new Board(6, 7);
 		board.setEmpty();
+		
 		// create new players
 		Player player1 = new Player(readLine("Name: "), Color.RED);
 		player1.setSymbol(readLine("Choose a Letter: "));
 		Player player2 = new Player(readLine("Name: "), Color.YELLOW);
 		player2.setSymbol(readLine("Choose a Letter: "));
+		
 		// console View
 		ConsoleView cView = new ConsoleView();
 		board.registerView(cView);
+		
 		// graphics view
 		GraphicsView gView = new GraphicsView(board, player1, player2);
 		add(gView);
@@ -81,6 +85,7 @@ public class Connect4 extends GraphicsProgram {
 		if (again.toLowerCase().equals("yes")) {
 			new Connect4().start();
 		}
+		
 		// lighthouse display
 		if (again.toLowerCase().equals("no")) {
 			//display.close();
