@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class LighthouseView implements View {
 	
-	public LighthouseView(Board board, Player player1, Player player2) {
+	public static void main(String[] args) {
+		
 		
 		LighthouseDisplay display = null;
 
@@ -43,5 +44,6 @@ public class LighthouseView implements View {
 		// TODO Auto-generated method stub
 		
 	}
+		
 
 }
